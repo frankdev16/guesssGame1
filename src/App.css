@@ -1,20 +1,25 @@
 :root {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --gold: #f59e0b;
+  --bg: #020617;
+  --card: #0f172a;
+  --accent: #f59e0b;
+  --success: #10b981;
   --danger: #ef4444;
-  --border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+  --border: rgba(255, 255, 255, 0.12);
 }
 
+/* RESET ALL TEXT TO BRIGHT WHITE BY DEFAULT */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
 }
 
 .app-viewport {
-  background: var(--bg);
+  background-color: var(--bg);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -25,187 +30,260 @@
 .game-card {
   background: var(--card);
   width: 100%;
-  max-width: 450px;
-  border-radius: 24px;
-  padding: 30px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  max-width: 440px;
+  padding: 40px;
+  border-radius: 32px;
   border: 1px solid var(--border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  /* Consistent vertical spacing */
 }
 
+/* 🔥 BRIGHT GAME TITLE */
 .title-brand {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 900;
-  color: white;
-  letter-spacing: -1px;
-  line-height: 1;
-  margin-bottom: 10px;
+  line-height: 0.9;
+  text-transform: uppercase;
+  /* Balanced bright gradient */
+  background: linear-gradient(to bottom, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4));
+  margin-bottom: 5px;
+}
+
+/* STATE-BASED TITLES */
+.screen-game_over .title-brand {
+  background: linear-gradient(to bottom, #ffffff, var(--danger));
+}
+
+.screen-won_level .title-brand {
+  background: linear-gradient(to bottom, #ffffff, var(--success));
 }
 
 .high-score-tag {
-  color: var(--gold);
-  font-size: 0.75rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 25px;
-}
-
-.instructions-box {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  padding: 20px;
-  margin: 20px 0;
-  text-align: left;
-  border: 1px solid var(--border);
-}
-
-.instructions-box h3 {
-  color: var(--gold);
-  font-size: 0.8rem;
-  margin-bottom: 15px;
-  text-align: center;
+  color: #fbbf24 !important;
+  font-size: 0.9rem;
+  font-weight: 800;
   letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
 }
 
-.step-list {
-  list-style: none;
-}
-
-.step-list li {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 0.8rem;
-  color: #cbd5e1;
+/* INSTRUCTIONS COLORS */
+.guide-item p.bright-text {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
-.step-list span {
-  background: var(--gold);
-  color: black;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.65rem;
-  flex-shrink: 0;
+.guide-item strong {
+  color: #ffffff !important;
 }
 
-.bonus-pill {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: bold;
-  margin-bottom: 25px;
-  display: inline-block;
-}
-
-.stat-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.stat-box {
-  flex: 1;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--border);
-  padding: 12px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-range {
-  flex: 2;
-  border-color: var(--gold);
-}
-
-.stat-label {
-  font-size: 0.6rem;
-  color: #94a3b8;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.stat-value {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-}
-
-.center-focus {
-  margin: 40px 0;
-}
-
-.hint-text {
-  color: var(--gold);
-  font-weight: bold;
-  font-size: 0.9rem;
-  min-height: 20px;
-  margin-bottom: 15px;
-}
-
-input[type="number"] {
-  background: transparent;
-  border: none;
-  border-bottom: 3px solid var(--gold);
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 3rem;
-  font-weight: bold;
-  outline: none;
-  padding: 10px 0;
-}
-
-.history-line {
-  margin-top: 15px;
-  color: #64748b;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-}
-
-.main-btn {
-  background: white;
-  color: black;
-  border: none;
-  padding: 16px;
-  width: 100%;
-  border-radius: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-
-.main-btn:active {
-  transform: scale(0.98);
-}
-
+/* EVENLY SPACED HUD */
 .top-hud {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
-.score-label {
-  color: var(--gold);
-  font-weight: bold;
-  font-size: 0.8rem;
-}
-
-.level-pill {
-  background: white;
-  color: black;
-  padding: 2px 8px;
-  border-radius: 4px;
+.hud-label {
   font-size: 0.7rem;
+  color: #94a3b8 !important;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.hud-val {
+  color: white !important;
   font-weight: 900;
+  font-size: 1.3rem;
+  margin-top: 4px;
+}
+
+.level-badge {
+  background: white;
+  color: black !important;
+  padding: 5px 15px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+/* 🔥 EVENLY SPACED METER LABELS */
+.accuracy-zone {
+  width: 100%;
+}
+
+.meter-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.meter-labels span {
+  color: #ffffff !important;
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+
+.meter-percent {
+  color: var(--accent) !important;
+}
+
+.meter-track {
+  height: 14px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  transition: width 0.6s ease-out;
+}
+
+/* RANGE BOX */
+.range-display {
+  width: 100%;
+}
+
+.range-label {
+  font-size: 0.7rem;
+  color: var(--accent) !important;
+  font-weight: 800;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.range-box {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.r-val {
+  color: white !important;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.r-sep {
+  color: #64748b !important;
+  font-weight: 900;
+}
+
+/* INPUT & FAINT PLACEHOLDER */
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid var(--accent);
+  width: 100%;
+  text-align: center;
+  color: white !important;
+  font-size: 4.5rem;
+  font-weight: 900;
+  outline: none;
+  margin: 10px 0;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.12) !important;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.hint-text {
+  color: var(--accent) !important;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+/* FINAL SCORE ON CLEAR SCREEN */
+.stat-summary {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sum-label {
+  color: #94a3b8 !important;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.sum-val {
+  color: #ffffff !important;
+  font-size: 2.8rem;
+  font-weight: 900;
+}
+
+/* BUTTONS */
+.main-btn {
+  background: #ffffff;
+  color: #000000 !important;
+  width: 100%;
+  padding: 22px;
+  border-radius: 18px;
+  border: none;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.main-btn:active {
+  transform: scale(0.96);
+}
+
+.badge {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa !important;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.pulse {
+  animation: pulse-anim 2s infinite;
+}
+
+@keyframes pulse-anim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
 }
